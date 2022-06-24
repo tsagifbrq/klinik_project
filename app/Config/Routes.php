@@ -40,6 +40,7 @@ $routes->post('/dashboard', 'Home::index');
 $routes->get('/listpasien', 'ListPasien::index');
 $routes->get('/test-today', 'ListPasienToday::index');
 $routes->get('/admin', 'Login::index');
+$routes->get('daftar', 'Daftar::index');
 
 
 /*
