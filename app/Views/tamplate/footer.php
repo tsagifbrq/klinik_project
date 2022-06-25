@@ -25,8 +25,6 @@
 
 
 
-<!-- AdminLTE for demo purposes -->
-<script src="assets/adminlte/dist/js/demo.js"></script>
 
 <script>
     $(function() {
