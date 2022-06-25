@@ -20,44 +20,52 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid ">
-            <div class="row">
+            <div class="row py-5">
                 <!-- left column -->
-                <div class="col-md-3">
+                <div class="col-md-6  mx-auto">
 
-                </div>
-                <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title">Daftar</h3>
+                            <h3 class="card-title">Daftar Test Covid</h3>
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form>
+                        <form id="savedataform">
+                            <?php if (session()->getFlashdata('pesan')) : ?>
+                                <div class="alert alert-success m-3" role="alert">
+                                    <?= session()->getFlashdata('pesan'); ?>
+                                </div>
+                            <?php endif; ?>
+                            <?php if (session()->getFlashdata('pesanhapus')) : ?>
+                                <div class="alert alert-danger m-3" role="alert">
+                                    <?= session()->getFlashdata('pesanhapus'); ?>
+                                </div>
+                            <?php endif; ?>
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="inputNik">NIK</label>
-                                    <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK">
+                                    <input type="text" class="form-control" id="inputNIK" name="nik" placeholder="Masukkan NIK" onchange="checknik()">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputNama">Nama</label>
-                                    <input type="text" class="form-control" id="nama" placeholder="Masukkan NAMA">
+                                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Masukkan NAMA">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputNoTelp">Nomor Telepon</label>
-                                    <input type="text" class="form-control" id="noTelp" placeholder="Masukkan No.Telp">
+                                    <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Masukkan No.Telp">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputTempatLahir">Tempat Lahir</label>
-                                    <input type="text" class="form-control" id="tempatLahir" placeholder="Masukkan Tempat Lahir Anda">
+                                    <input type="text" class="form-control" id="inputPOB" name="place_of_birth" placeholder="Masukkan Tempat Lahir Anda">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputTglLahir">Tanggal Lahir</label>
-                                    <input type="text" class="form-control" id="tgl_Lahir" placeholder="Masukkan Tanggal Lahir Anda">
+                                    <input type="date" class="form-control" id="inputBirthday" name="birthday" placeholder="Masukkan Tanggal Lahir Anda">
                                 </div>
                                 <div class="form-group">
                                     <label for="SelectPemeriksaan">Pemeriksaan</label>
-                                    <select class="form-control">
+                                    <select class="form-control" id="inputExam" name="examination">
                                         <option>Covid Antigen - Rapid</option>
                                         <option>Covid Antibody - Rapid</option>
                                         <option>Covid PCR - Swap</option>
@@ -65,26 +73,26 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Atas Permintaan</label>
-                                    <input type="text" class="form-control" id="permintaan" placeholder="Masukkan Tujuan Permintaan Anda">
+                                    <input type="text" class="form-control" id="inputReq" name="upon_request" placeholder="Masukkan Tujuan Permintaan Anda">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPemeriksaan">Jenis Kelamin</label>
-                                    <div class="form-group">
+                                    <div class="form-group" id="genderradio">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radio1" checked>
+                                            <input class="form-check-input" type="radio" name="gender" id="genderRadio1" value="Laki-Laki" checked>
                                             <label class="form-check-label">Laki-laki</label>
                                         </div>
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="radio1">
+                                            <input class="form-check-input" type="radio" name="gender" id="genderRadio1" value="Perempuan">
                                             <label class="form-check-label">Perempuan</label>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
-
-                                <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" href="/dashboard" method="POST ">Submit</button>
-                                </div>
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <input type="submit" value="Submit" class="btn btn-primary" form-id="savedataform">
+                            </div>
                         </form>
                         <!-- /.card -->
 
@@ -94,11 +102,73 @@
                         <script src="assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
                         <!-- AdminLTE App -->
                         <script src="assets/adminlte/dist/js/adminlte.min.js"></script>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
+    <script type="text/javascript">
+        $(function() {
+            $("#savedataform").submit(function(e) {
+                $.ajax({
+                    url: "savedata",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        alert(response.success);
+                        window.location.replace("/daftar");
+                        // $('#editpatient').modal('hide');
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError);
+                    }
+                });
+                e.preventDefault();
+            });
+        });
+
+        function checknik() {
+            //Ajax Load data from ajax
+            var id = $('#inputNIK').val();
+            var table = "patients";
+
+            $.ajax({
+                url: "getdata",
+                type: "POST",
+                data: {
+                    id: id,
+                    table: table
+                },
+                dataType: "json",
+                success: function(response) {
+                    if (response) {
+                        $('#nik').val(response.nik);
+                        $('#inputName').val(response.name);
+                        $('#inputPOB').val(response.place_of_birth);
+                        $('#inputBirthday').val(response.birthday);
+                        $('#inputPhone').val(response.phone);
+                        if (response.gender == 'Perempuan')
+                            $('#genderradio').find(':radio[name=gender][value="Perempuan"]').prop('checked', true);
+                        else if (response.gender == 'Laki-Laki')
+                            $('#genderradio').find(':radio[name=gender][value="Laki-Laki"]').prop('checked', true);
+                        endif;
+                    } else {
+                        $('#inputName').val('');
+                        $('#inputPOB').val('');
+                        $('#inputBirthday').val('');
+                        $('#inputPhone').val('');
+                        $('#genderradio').find(':radio[name=gender][value="Perempuan"]').prop('checked', false);
+                        $('#genderradio').find(':radio[name=gender][value="Laki-Laki"]').prop('checked', false);
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert('Error get data from ajax');
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
