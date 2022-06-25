@@ -22,6 +22,9 @@
         <div class="container-fluid ">
             <div class="row">
                 <!-- left column -->
+                <div class="col-md-3">
+
+                </div>
                 <div class="col-md-6">
                     <!-- general form elements -->
                     <div class="card card-primary">
@@ -33,43 +36,55 @@
                         <form>
                             <div class="card-body">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">NIK</label>
+                                    <label for="inputNik">NIK</label>
                                     <input type="text" class="form-control" id="nik" placeholder="Masukkan NIK">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Nama</label>
+                                    <label for="inputNama">Nama</label>
                                     <input type="text" class="form-control" id="nama" placeholder="Masukkan NAMA">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Nomor Telepon</label>
+                                    <label for="inputNoTelp">Nomor Telepon</label>
                                     <input type="text" class="form-control" id="noTelp" placeholder="Masukkan No.Telp">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Tempat Lahir</label>
+                                    <label for="inputTempatLahir">Tempat Lahir</label>
                                     <input type="text" class="form-control" id="tempatLahir" placeholder="Masukkan Tempat Lahir Anda">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Tanggal Lahir</label>
+                                    <label for="inputTglLahir">Tanggal Lahir</label>
                                     <input type="text" class="form-control" id="tgl_Lahir" placeholder="Masukkan Tanggal Lahir Anda">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Pemeriksaan</label>
-                                    <input type="text" class="form-control" id="pemeriksaan" placeholder="Pilih Pemeriksaan yang ingin dilakukan">
+                                    <label for="SelectPemeriksaan">Pemeriksaan</label>
+                                    <select class="form-control">
+                                        <option>Covid Antigen - Rapid</option>
+                                        <option>Covid Antibody - Rapid</option>
+                                        <option>Covid PCR - Swap</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Atas Permintaan</label>
                                     <input type="text" class="form-control" id="permintaan" placeholder="Masukkan Tujuan Permintaan Anda">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Jenis Kelamin</label>
-                                    <input type="text" class="form-control" id="jenisKelamin" placeholder="Pilih Jenis Kelamin">
+                                    <label for="inputPemeriksaan">Jenis Kelamin</label>
+                                    <div class="form-group">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio1" checked>
+                                            <label class="form-check-label">Laki-laki</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="radio" name="radio1">
+                                            <label class="form-check-label">Perempuan</label>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                            <!-- /.card-body -->
+                                <!-- /.card-body -->
 
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary" href="/dashboard">Submit</button>
-                            </div>
+                                <div class="card-footer">
+                                    <button type="submit" class="btn btn-primary" href="/dashboard" method="POST">Submit</button>
+                                </div>
                         </form>
                         <!-- /.card -->
 
