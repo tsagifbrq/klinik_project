@@ -45,27 +45,27 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="inputNik">NIK</label>
-                                    <input type="text" class="form-control" id="inputNIK" name="nik" placeholder="Masukkan NIK" onchange="checknik()">
+                                    <input type="text" class="form-control" id="inputNIK" name="nik" placeholder="Masukkan NIK" onchange="checknik()" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputNama">Nama</label>
-                                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Masukkan NAMA">
+                                    <input type="text" class="form-control" id="inputName" name="name" placeholder="Masukkan NAMA" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputNoTelp">Nomor Telepon</label>
-                                    <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Masukkan No.Telp">
+                                    <input type="text" class="form-control" id="inputPhone" name="phone" placeholder="Masukkan No.Telp" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputTempatLahir">Tempat Lahir</label>
-                                    <input type="text" class="form-control" id="inputPOB" name="place_of_birth" placeholder="Masukkan Tempat Lahir Anda">
+                                    <input type="text" class="form-control" id="inputPOB" name="place_of_birth" placeholder="Masukkan Tempat Lahir Anda" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputTglLahir">Tanggal Lahir</label>
-                                    <input type="date" class="form-control" id="inputBirthday" name="birthday" placeholder="Masukkan Tanggal Lahir Anda">
+                                    <input type="date" class="form-control" id="inputBirthday" name="birthday" placeholder="Masukkan Tanggal Lahir Anda" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="SelectPemeriksaan">Pemeriksaan</label>
-                                    <select class="form-control" id="inputExam" name="examination">
+                                    <select class="form-control" id="inputExam" name="examination" required>
                                         <option>Covid Antigen - Rapid</option>
                                         <option>Covid Antibody - Rapid</option>
                                         <option>Covid PCR - Swap</option>
@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Atas Permintaan</label>
-                                    <input type="text" class="form-control" id="inputReq" name="upon_request" placeholder="Masukkan Tujuan Permintaan Anda">
+                                    <input type="text" class="form-control" id="inputReq" name="upon_request" placeholder="Masukkan Tujuan Permintaan Anda" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPemeriksaan">Jenis Kelamin</label>
