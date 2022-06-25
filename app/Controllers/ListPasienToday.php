@@ -16,7 +16,7 @@ class ListPasienToday extends BaseController
     public function index()
     {
 
-        $allpatient = $this->patient->patienttoday('2022-06-23');
+        $allpatient = $this->patient->patienttoday('2022-06-25');
         $data = [
             'content' => 'pages/list_pasien_today',
             'Judul' => 'List Pasien Hari ini',
