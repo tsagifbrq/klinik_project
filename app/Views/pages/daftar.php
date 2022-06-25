@@ -83,7 +83,7 @@
                                 <!-- /.card-body -->
 
                                 <div class="card-footer">
-                                    <button type="submit" class="btn btn-primary" href="/dashboard" method="POST">Submit</button>
+                                    <button type="submit" class="btn btn-primary" href="/dashboard" method="POST ">Submit</button>
                                 </div>
                         </form>
                         <!-- /.card -->
