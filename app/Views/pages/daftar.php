@@ -78,18 +78,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <<<<<<< HEAD </div>
-                                    <!-- /.card-body -->
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary" href="/dashboard">Submit</button>
-                                    </div>
-                                    =======
-                                    <!-- /.card-body -->
-
-                                    <div class="card-footer">
-                                        <button type="submit" class="btn btn-primary" href="/dashboard" method="POST ">Submit</button>
-                                    </div>
-                                    >>>>>>> origin/tsagif
+                            </div>
+                            <!-- /.card-body -->
+                            <div class="card-footer">
+                                <button type="submit" class="btn btn-primary" href="/dashboard">Submit</button>
+                            </div>
                         </form>
                         <!-- /.card -->
 
