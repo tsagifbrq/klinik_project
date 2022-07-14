@@ -35,7 +35,7 @@ class Home extends BaseController
             'totalpatient' => $allpatient->countAllResults(true),
             'negatifcovid' => $allcheckup->where('result', 'Negatif')->countAllResults(true),
             'positifcovid' => $allcheckup->where('result', 'Positif')->countAllResults(true),
-            'pasientoday' => $allcheckup->like('created_at', '2022-06-23')->countAllResults(true),
+            'pasientoday' => $allcheckup->like('created_at', date('Y-m-d'))->countAllResults(true),
             'dailypasien' => $nilai,
         ];
         return view('tamplate/layout', $data);
