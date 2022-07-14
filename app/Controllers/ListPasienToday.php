@@ -2,16 +2,19 @@
 
 namespace App\Controllers;
 
+use App\Models\CheckupModel;
 use App\Models\PatientsModel;
 use CodeIgniter\I18n\Time;
 
 class ListPasienToday extends BaseController
 {
     protected $patient;
+    protected $checkup;
 
     public function __construct()
     {
         $this->patient = new PatientsModel();
+        $this->checkup = new CheckupModel();
     }
     public function index()
     {
@@ -24,5 +27,12 @@ class ListPasienToday extends BaseController
         ];
 
         return view('tamplate/layout', $data);
+    }
+
+    public function deleteData($id)
+    {
+        $this->checkup->delete($id);
+        session()->setFlashdata('pesan', 'Data berhasil di Hapus');
+        // return redirect()->to("test-today");
     }
 }

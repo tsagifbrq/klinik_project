@@ -43,6 +43,7 @@ $routes->get('admin', 'Login::index');
 $routes->get('daftar', 'Daftar::index');
 $routes->add('getdata', 'Daftar::getdata');
 $routes->add('savedata', 'Daftar::saveData');
+$routes->add('hapus/(:any)', 'ListPasienToday::deleteData/$1');
 
 
 /*
