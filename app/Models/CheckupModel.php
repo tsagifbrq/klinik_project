@@ -12,7 +12,6 @@ class CheckupModel extends Model
     protected $table = 'covid_checkup';
     protected $allowedFields = ['nik', 'no_rm', 'upon_request', 'checkup', 'checkup_metode', 'ref_number', 'result', 'qr_code'];
     protected $useTimestamps = true;
-    protected $useSoftDeletes = true;
 
     public function cekCovid()
     {

@@ -29,7 +29,7 @@ class ListPasienToday extends BaseController
         return view('tamplate/layout', $data);
     }
 
-    public function deleteData($id)
+    public function delete($id)
     {
         $this->checkup->delete($id);
         session()->setFlashdata('pesan', 'Data berhasil di Hapus');

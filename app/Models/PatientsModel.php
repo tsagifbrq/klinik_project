@@ -22,7 +22,8 @@ class PatientsModel extends Model
         $builder = $this->db->table('covid_checkup as a')
             ->select('*,a.created_at,a.deleted_at')
             ->join('patients as b', 'a.nik=b.nik')
-            ->like('a.created_at', $date);
+            ->like('a.created_at', $date)
+            ->where('a.deleted_at', null);
         return $builder;
     }
     public function allpatient()
