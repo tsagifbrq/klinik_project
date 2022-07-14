@@ -23,7 +23,7 @@ class Home extends BaseController
     {
         $allpatient = $this->patient->allpatient();
         $allcheckup = $this->checkup->cekCovid();
-        $cekdaily = $this->checkup->dailycek(date('Y-m'));
+        $cekdaily = $this->checkup->dailycek('2022-06');
         $i = 0;
         foreach ($cekdaily->getResultArray() as $row) {
             $nilai[$i] = $row['jumlah'];
