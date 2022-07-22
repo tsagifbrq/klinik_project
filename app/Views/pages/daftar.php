@@ -66,9 +66,9 @@
                                 <div class="form-group">
                                     <label for="SelectPemeriksaan">Pemeriksaan</label>
                                     <select class="form-control" id="inputExam" name="examination" required>
-                                        <option>Covid Antigen - Rapid</option>
-                                        <option>Covid Antibody - Rapid</option>
-                                        <option>Covid PCR - Swap</option>
+                                        <option value="Covid Antigen - Rapid">Covid Antigen - Rapid</option>
+                                        <option value="Covid Antibody - Rapid">Covid Antibody - Rapid</option>
+                                        <option value="Covid PCR - Swap">Covid PCR - Swap</option>
                                     </select>
                                 </div>
                                 <div class="form-group">

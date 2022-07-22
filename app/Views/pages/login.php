@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Log in</title>
+    <title>Klinik Al-Syifa | Log in</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -24,41 +24,51 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <?= form_open('login/cekUser'); ?>
+                <?= csrf_field(); ?>
+                <div class="input-group mb-3">
+                    <?php
+                    // if (session()->getFlashdata('errUser')) {
+                    //     $isInvalidUser = "is-invalid";
+                    // }else {
+                    //     $isInvalidUser = '';
+                    // } 
+                    $isInvalidUser = (session()->getFlashdata('errUser')) ? 'is-invalid' : '';
+                    ?>
+                    <input type="input" class="form-control <?= $isInvalidUser ?>" placeholder="Input ID" name="username" autofocus>
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-user"></span>
+                        </div>
+                    </div>
+                    <?php if (session()->getFlashdata('errUser')) {
+                        echo '<div id="validationServer03Feedback" class="invalid-feedback">
+                        ' . session()->getFlashdata('errUser') . '
+                      </div>';
+                    } ?>
 
-                <form action="dashboard" method="post">
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-user"></span>
-                            </div>
+                </div>
+                <div class="input-group mb-3">
+                    <?php $isInvalidPassword = (session()->getFlashdata('errPassword')) ? 'is-invalid' : ''; ?>
+                    <input type="password" class="form-control <?= $isInvalidPassword ?>" placeholder="Password" name="password">
+                    <div class="input-group-append">
+                        <div class="input-group-text">
+                            <span class="fas fa-lock"></span>
                         </div>
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="icheck-primary">
-                                <input type="checkbox" id="remember">
-                                <label for="remember">
-                                    Remember Me
-                                </label>
-                            </div>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-4">
-                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                </form>
+                    <?php if (session()->getFlashdata('errPassword')) {
+                        echo '<div id="validationServer03Feedback" class="invalid-feedback">
+                        ' . session()->getFlashdata('errPassword') . '
+                      </div>';
+                    } ?>
+                </div>
+                <div class="input-group mb-3">
+                    <button type="submit" class="btn btn-block btn-success">
+                        Login
+                    </button>
+                </div>
+
+                <?= form_close() ?>
             </div>
             <!-- /.login-card-body -->
         </div>

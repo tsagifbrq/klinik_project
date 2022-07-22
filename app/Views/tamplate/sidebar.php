@@ -31,10 +31,18 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="test-today" class="nav-link">
+                    <a href="pasient-today" class="nav-link">
                         <i class="nav-icon fa-solid fa-people-line"></i>
                         <p>
                             List Pasien Hari Ini
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="laporan" class="nav-link">
+                        <i class="nav-icon fa-solid fa-file"></i>
+                        <p>
+                            Laporan
                         </p>
                     </a>
                 </li>

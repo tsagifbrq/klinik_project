@@ -12,6 +12,13 @@ class CheckupModel extends Model
     protected $table = 'covid_checkup';
     protected $allowedFields = ['nik', 'no_rm', 'upon_request', 'checkup', 'checkup_metode', 'ref_number', 'result', 'qr_code'];
     protected $useTimestamps = true;
+    protected $useSoftDeletes = true;
+
+    public function __construct()
+    {
+        $this->db = db_connect();
+        $this->builder = $this->db->table("covid_checkup as a");
+    }
 
     public function cekCovid()
     {
@@ -26,5 +33,19 @@ class CheckupModel extends Model
         $tes = $this->db->query($sql);
 
         return $tes;
+    }
+
+    public function getTahun()
+    {
+
+        $sql = "SELECT YEAR(created_at) as tahun from covid_checkup GROUP BY YEAR(created_at) ORDER BY YEAR(created_at) ASC";
+        $tahun = $this->db->query($sql);
+
+        return $tahun;
+    }
+
+    public function ubahData($data, $id)
+    {
+        return $this->builder->update($data, ['a.id' => $id]);
     }
 }

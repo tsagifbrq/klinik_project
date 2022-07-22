@@ -1,6 +1,3 @@
-<!-- jQuery UI 1.11.4 -->
-<!-- <script src="assets/adminlte/plugins/jquery-ui/jquery-ui.min.js"></script> -->
-
 <!-- Bootstrap 4 -->
 <script src="assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- ChartJS -->
@@ -22,6 +19,9 @@
 <script src="assets/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="assets/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+
+<script src="assets/adminlte/build/js/jquery.min.js"></script>
+<script src="assets/adminlte/build/js/script.js"></script>
 
 
 
@@ -49,3 +49,8 @@
 </body>
 
 </html>
+
+
+<!-- jQuery UI 1.11.4 -->
+<!-- <script src="assets/adminlte/plugins/jquery/jquery.min.js"></script>
+<script src="assets/adminlte/plugins/jquery/script.js"></script> -->

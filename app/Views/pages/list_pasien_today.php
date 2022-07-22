@@ -6,10 +6,16 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">DataTable with default features</h3>
+                        <?php if (session()->getFlashdata('message')) : ?>
+                            <div class="alert alert-success m-3" role="alert">
+                                <?= session()->getFlashdata('message'); ?>
+                            </div>
+                        <?php endif; ?>
+                        <h3 class="card-title">Tabel Pasien Hari ini</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
+                        <?php echo session()->getFlashdata('msg') ?>
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
@@ -20,6 +26,7 @@
                                     <th>Jenis Kelamin</th>
                                     <th>Pemeriksaan</th>
                                     <th>Nomor Surat</th>
+                                    <th>Hasil</th>
                                     <th width='200px'>Aksi</th>
                                     <th>Hapus</th>
                                 </tr>
@@ -35,46 +42,24 @@
                                         <td><?= $p['gender']; ?></td>
                                         <td><?= $p['checkup']; ?></td>
                                         <td><?= $p['ref_number']; ?></td>
+                                        <td><?= $p['result']; ?></td>
                                         <td>
-                                            <div class="row">
-                                                <!-- <button class="btn btn-sm btn-success m-1" id="editbutton">Edit</button> -->
-                                                <?php if (is_null($p['result']) == true) : ?>
-                                                    <div class="col-9">
-                                                        <form action="update_result/<?= $p['id']; ?>" method="post" class="row">
-                                                            <div class="col-10">
-                                                                <select id="inputResult" class="form-select" name="result">
-                                                                    <option value="Negatif" selected>Negatif</option>
-                                                                    <option value="Postif">Positif</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="col-2">
-                                                                <button class="btn btn-xs btn-success"><i class="far fa-share-square"></i></button>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <?php if (is_null($p['result']) == false && is_null($p['qr_code']) == false) : ?>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-xs btn-primary" onclick="inputqrcode(<?= $p['id']; ?>)"><i class="fas btn-xs fa-qrcode"></i></button>
-                                                        <a href="download/<?= $p['nik']; ?>/<?= $p['id']; ?>" class="btn btn-xs btn-success"><i class="fas btn-xs fa-download"></i></a>
-                                                    </div>
-                                                <?php endif; ?>
-                                                <?php if (is_null($p['result']) == false && is_null($p['qr_code']) == true) : ?>
-                                                    <div class="col-12">
-                                                        <button class="btn btn-xs btn-primary" onclick="inputqrcode(<?= $p['id']; ?>)"><i class="fas btn-xs fa-qrcode"></i></button>
-                                                        <a href="download/<?= $p['nik']; ?>/<?= $p['id']; ?>" class="btn btn-xs btn-warning"><i class="fas btn-xs fa-download"></i></a>
-                                                    </div>
-                                                <?php endif; ?>
-                                            </div>
+                                            <a href="hasil/<?= $p['id']; ?>" class="btn btn-success"> Hasil</i>
+                                            </a>
+
+
+
+
                                         </td>
                                         <td>
-                                            <div class="col-6">
-                                                <form action="hapus/<?= $p['id']; ?>" method="POST">
-                                                    <?= csrf_field(); ?>
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda yakin?');"><i class="fas btn-xs fa-trash-alt"></i></button>
-                                                </form>
-                                            </div>
+                                            <form action="hapus/<?= $p['id']; ?>" method="GET">
+                                                <?= csrf_field(); ?>
+                                                <button type="button" data-toggle="modal" data-target="#modalUbah" id="edit" class="btn btn-warning" data-id="<?= $p['id']; ?>">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <input type="hidden" name="_method" value="DELETE">
+                                                <button type="submit" class="btn btn-s btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?');"><i class="fas btn-xs fa-trash-alt"></i></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
@@ -91,7 +76,49 @@
     </div>
     <!-- /.container-fluid -->
 </section>
+
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 </div>
+
+
+<form action="/pasient-today/update" method="post">
+    <div class="modal fade" id="modalUbah" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Update Pasien</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>No.RM</label>
+                        <input type="text" class="form-control no_rm" name="no_rm" placeholder="Nomor Pasien" value="<?= $p['no_rm']; ?>">
+                    </div>
+                    <div class="form-group">
+                        <label>No.Surat</label>
+                        <input type="text" class="form-control ref_number" name="ref_number" placeholder="Nomor Surat" value="<?= $p['ref_number']; ?>">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Hasil</label>
+                        <select name="result" class="form-control result">
+                            <option value="<?= $p['result']; ?>">-Select-</option>
+                            <option value="Positif">Positif</option>
+                            <option value="Negatif">Negatif</option>
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="id" class="id" value="<?= $p['id']; ?>">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

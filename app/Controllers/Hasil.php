@@ -2,15 +2,30 @@
 
 namespace App\Controllers;
 
+use App\Models\CheckupModel;
+use App\Models\PatientsModel;
+
 class Hasil extends BaseController
 {
-    // public function index()
-    // {
-    //     $data = [
-    //         'pid' => $this->patient->find($nama),
-    //         'cid' => $this->checkup->find($id),
-    //     ];
+    protected $patient;
+    protected $checkup;
+    public function __construct()
+    {
+        $this->patient = new PatientsModel();
+        $this->checkup = new CheckupModel();
+    }
+    public function index()
+    {
+        return view('pages/hasil');
+    }
 
-    //     return view('pdf_view', $data);
-    // }
+    public function cek_laporan($id)
+    {
+        $detail =  $this->checkup->cekLaporan($id);
+        $dataLaporan = [
+            'cid' => $detail,
+        ];
+
+        return view('pages/hasil', $dataLaporan);
+    }
 }

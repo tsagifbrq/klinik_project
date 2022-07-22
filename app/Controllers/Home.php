@@ -23,7 +23,7 @@ class Home extends BaseController
     {
         $allpatient = $this->patient->allpatient();
         $allcheckup = $this->checkup->cekCovid();
-        $cekdaily = $this->checkup->dailycek('2022-06');
+        $cekdaily = $this->checkup->dailycek('2022-07');
         $i = 0;
         foreach ($cekdaily->getResultArray() as $row) {
             $nilai[$i] = $row['jumlah'];
@@ -36,6 +36,9 @@ class Home extends BaseController
             'negatifcovid' => $allcheckup->where('result', 'Negatif')->countAllResults(true),
             'positifcovid' => $allcheckup->where('result', 'Positif')->countAllResults(true),
             'pasientoday' => $allcheckup->like('created_at', date('Y-m-d'))->countAllResults(true),
+            'tesantigen' => $allcheckup->where('checkup', 'Covid Antigen - Rapid')->countAllResults(true),
+            'tesantibody' => $allcheckup->where('checkup', 'Covid Antibody - Rapid')->countAllResults(true),
+            'tespcr' => $allcheckup->where('checkup', 'Covid PCR-Swab')->countAllResults(true),
             'dailypasien' => $nilai,
         ];
         return view('tamplate/layout', $data);

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generate PDF CodeIgniter 4 - qadrLabs</title>
+    <title>Hasil Laporan</title>
     <style>
         * {
             box-sizing: border-box;
@@ -35,14 +35,13 @@
 <body>
 
     <img src="<?= base_url('word_logo.jpg'); ?>" width="100%" alt="" /><br><br>
-
     <table border=0 width=100% cellpadding=1 cellspacing=0 style="margin-top: 5px; text-align:Left">
         <tbody>
             <tr>
-                <td width="15%">No RM</td>
-                <td width="35%">: <?= $cid['no_rm']; ?></td>
-                <td width="20%">Pemeriksaan</td>
-                <td width="30%">: <?= $cid['checkup']; ?></td>
+                <td width="15%">No RM : <?= $cid['no_rm']; ?></td>
+                <!-- <td width="35%">: <?= $cid['no_rm']; ?></td> -->
+                <td width="20%">Pemeriksaan : <?= $cid['checkup']; ?></td>
+                <!-- <td width="30%">: <?= $cid['checkup']; ?></td> -->
             </tr>
             <tr>
                 <td>Nama</td>
@@ -101,6 +100,7 @@
             </p>
         </div>
     </div>
+
 
 </body>
 

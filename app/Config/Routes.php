@@ -35,16 +35,36 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Login::index');
 $routes->get('dashboard', 'Home::index');
+$routes->get('dashboard/(:any)/(:any)', 'Home::index/$1/$2');
+
 $routes->get('listpasien', 'ListPasien::index');
-$routes->get('test-today', 'ListPasienToday::index');
-$routes->get('admin', 'Login::index');
+
+$routes->get('pasient-today', 'ListPasienToday::index');
+$routes->post('pasient-today/update', 'ListPasienToday::ubah');
+
+$routes->get('hasil', 'hasil::index');
+$routes->post('hasil', 'hasil::index');
+
+$routes->get('hasil/(:any)', 'hasil::cek_laporan/$1');
+
 $routes->get('daftar', 'Daftar::index');
 $routes->add('getdata', 'Daftar::getdata');
 $routes->add('savedata', 'Daftar::saveData');
-$routes->delete('hapus/(:any)', 'ListPasienToday::delete/$1');
 
+$routes->get('login', 'Login::index');
+$routes->post('login/cekUser', 'Login::cekUser');
+$routes->get('logout', 'Login::logout');
+
+$routes->delete('hapus/(:any)', 'ListPasienToday::delete/$1');
+$routes->get('laporan', 'Laporan::index');
+$routes->get('laporan/print_laporan_tanggal', 'Laporan::print_laporan_tanggal');
+$routes->post('laporan/print_laporan_tanggal', 'Laporan::print_laporan_tanggal');
+$routes->get('laporan/print_laporan_bulan', 'Laporan::print_laporan_bulan');
+$routes->post('laporan/print_laporan_bulan', 'Laporan::print_laporan_bulan');
+$routes->get('laporan/print_laporan_tahun', 'Laporan::print_laporan_tahun');
+$routes->post('laporan/print_laporan_tahun', 'Laporan::print_laporan_tahun');
 
 /*
  * --------------------------------------------------------------------

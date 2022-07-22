@@ -11,7 +11,7 @@
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="admin" role="button"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+                    <a class="nav-link" href="<?= site_url('logout'); ?>" role="button"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
                 </li>
             </ul>
         </nav>
