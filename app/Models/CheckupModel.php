@@ -14,11 +14,7 @@ class CheckupModel extends Model
     protected $useTimestamps = true;
     protected $useSoftDeletes = true;
 
-    public function __construct()
-    {
-        $this->db = db_connect();
-        $this->builder = $this->db->table("covid_checkup as a");
-    }
+
 
     public function cekCovid()
     {
@@ -38,14 +34,36 @@ class CheckupModel extends Model
     public function getTahun()
     {
 
-        $sql = "SELECT YEAR(created_at) as tahun from covid_checkup GROUP BY YEAR(created_at) ORDER BY YEAR(created_at) ASC";
-        $tahun = $this->db->query($sql);
+        $sql = $this->db->query("SELECT YEAR(created_at) as tahun from covid_checkup GROUP BY YEAR(created_at) ORDER BY YEAR(created_at) ASC");
 
-        return $tahun;
+        return $sql->getResult();
+    }
+    public function filterTanggal($tglawal, $tglakhir)
+    {
+        $sql = $this->db->query("SELECT * from covid_checkup join patients on covid_checkup.nik = patients.nik WHERE covid_checkup.created_at BETWEEN '$tglawal' and DATE_ADD('$tglakhir', INTERVAL 1 DAY) ORDER BY covid_checkup.created_at ASC");
+        // $tanggalFilter = $this->db->query($sql);
+
+        return $sql->getResultArray();
     }
 
+    public function filterBulan($bulanAwal, $bulanAkhir, $tahun1)
+    {
+        $sql = $this->db->query("SELECT * from covid_checkup join patients on covid_checkup.nik = patients.nik WHERE covid_checkup.created_at BETWEEN '$bulanAwal' and DATE_ADD('$bulanAkhir', INTERVAL 1 DAY) AND  YEAR(covid_checkup.created_at)=$tahun1 ORDER BY covid_checkup.created_at ASC");
+        // $tanggalFilter = $this->db->query($sql);
+
+        return $sql->getResultArray();
+    }
+    public function filterTahun($tahun2)
+    {
+        $sql = "SELECT * from covid_checkup join patients on covid_checkup.nik = patients.nik WHERE YEAR(covid_checkup.created_at) = '$tahun2' order by covid_checkup.created_at ASC";
+        $tahunFilter = $this->db->query($sql);
+
+        return $tahunFilter->getResultArray();
+    }
     public function ubahData($data, $id)
     {
+        $this->db = db_connect();
+        $this->builder = $this->db->table("covid_checkup as a");
         return $this->builder->update($data, ['a.id' => $id]);
     }
 }

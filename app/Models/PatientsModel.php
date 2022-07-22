@@ -17,11 +17,7 @@ class PatientsModel extends Model
 
     protected $today;
 
-    public function __construct()
-    {
-        $this->db = db_connect();
-        $this->builder = $this->db->table($this->table);
-    }
+
 
     public function patienttoday($date)
     {
