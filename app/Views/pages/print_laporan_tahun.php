@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan List Pasien</title>
+    <link rel="shortcut icon" type="image/png" href="/logo.png" />
 </head>
 
 <body>
@@ -52,7 +53,7 @@
                                         <?php foreach ($filterTahun as $row) : ?>
                                             <tr>
                                                 <td><?= $i++; ?></td>
-                                                <td><?= $row['created_at']; ?></td>
+                                                <td><?= date_format(new DateTime($row['created_at']), 'd-m-Y'); ?></td>
                                                 <td><?= $row['nik']; ?></td>
                                                 <td><?= $row['name']; ?></td>
                                                 <td><?= $row['gender']; ?></td>

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laporan Pasien</title>
+    <link rel="shortcut icon" type="image/png" href="/logo.png" />
 </head>
 
 <body>
@@ -28,7 +29,7 @@
                     <tr style="text-align: center;">
                         <td>
                             <h3><u>Laporan Pasien Berdasarkan Tanggal</u></h3> <br>
-                            Periode : <?= $tglAwal . " s/d " . $tglAkhir; ?>
+                            Periode : <?= date_format(new DateTime($tglAwal), 'd-m-Y') . " s/d " . date_format(new DateTime($tglAkhir), 'd-m-Y'); ?>
                         </td>
                     </tr>
                     <tr>
@@ -52,7 +53,7 @@
                                         <?php foreach ($dataLaporan as $row) : ?>
                                             <tr>
                                                 <td><?= $i++; ?></td>
-                                                <td><?= $row['created_at']; ?></td>
+                                                <td><?= date_format(new DateTime($row['created_at']), 'd-m-Y'); ?></td>
                                                 <td><?= $row['nik']; ?></td>
                                                 <td><?= $row['name']; ?></td>
                                                 <td><?= $row['gender']; ?></td>
@@ -62,7 +63,7 @@
                                             </tr>
                                         <?php endforeach; ?>
 
-                                        <?php echo "Jumlah Pasien Pada Tanggal " . $tglAwal . ' S/D ' . $tglAkhir . ' = ' . count($dataLaporan) ?>
+                                        <?php echo "Jumlah Pasien :  " . count($dataLaporan) ?>
                                     </tbody>
 
                                 </table>

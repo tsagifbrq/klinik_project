@@ -28,7 +28,7 @@
                                         <td><?= $p['nik']; ?></td>
                                         <td><?= $p['name']; ?></td>
                                         <td><?= $p['place_of_birth']; ?></td>
-                                        <td><?= $p['birthday']; ?></td>
+                                        <td><?= date_format(new DateTime($p['birthday']), 'd-m-Y'); ?></td>
                                         <td><?= $p['gender']; ?></td>
                                         <td><?= $p['phone']; ?></td>
                                     </tr>

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hasil Laporan</title>
+    <link rel="shortcut icon" type="image/png" href="/logo.png" />
     <style>
         * {
             box-sizing: border-box;
@@ -32,35 +33,38 @@
     </style>
 </head>
 
-<body>
+<body style="max-width: 720px; margin-left: auto; margin-right: auto;">
 
     <img src="<?= base_url('word_logo.jpg'); ?>" width="100%" alt="" /><br><br>
     <table border=0 width=100% cellpadding=1 cellspacing=0 style="margin-top: 5px; text-align:Left">
         <tbody>
-            <tr>
-                <td width="15%">No RM : <?= $cid['no_rm']; ?></td>
-                <!-- <td width="35%">: <?= $cid['no_rm']; ?></td> -->
-                <td width="20%">Pemeriksaan : <?= $cid['checkup']; ?></td>
-                <!-- <td width="30%">: <?= $cid['checkup']; ?></td> -->
-            </tr>
-            <tr>
-                <td>Nama</td>
-                <td>: <?= $pid['name']; ?></td>
-                <td>Atas Permintaan</td>
-                <td>: <?= $cid['upon_request']; ?></td>
-            </tr>
-            <tr>
-                <td>Tempat, Tanggal Lahir</td>
-                <td>: <?= $pid['place_of_birth']; ?>, <?= date('d-m-Y', strtotime($pid['birthday'])); ?></td>
-                <td>Waktu Pemeriksaan</td>
-                <td>: <?= $cid['created_at']; ?></td>
-            </tr>
-            <tr>
-                <td>Jenis Kelamin</td>
-                <td>: <?= $pid['gender']; ?></td>
-                <td>No. Surat</td>
-                <td>: <?= $cid['ref_number']; ?></td>
-            </tr>
+            <?php foreach ($laporan as $cid) : ?>
+                <tr>
+                    <td width="15%">No RM </td>
+                    <td width="35%">: <?= $cid['no_rm']; ?></td>
+                    <td width="20%">Pemeriksaan </td>
+                    <td width="30%">: <?= $cid['checkup']; ?></td>
+                </tr>
+                <tr>
+                    <td>Nama</td>
+                    <td>: <?= $cid['name']; ?></td>
+                    <td>Atas Permintaan</td>
+                    <td>: <?= $cid['upon_request']; ?></td>
+                </tr>
+                <tr>
+                    <td>Tempat, Tanggal Lahir</td>
+                    <td>: <?= $cid['place_of_birth']; ?>, <?= date('d-m-Y', strtotime($cid['birthday'])); ?></td>
+                    <td>Waktu Pemeriksaan</td>
+                    <td>: <?= $cid['created_at']; ?></td>
+                </tr>
+                <tr>
+                    <td>Jenis Kelamin</td>
+                    <td>: <?= $cid['gender']; ?></td>
+                    <td>No. Surat</td>
+                    <td>: <?= $cid['ref_number']; ?></td>
+                </tr>
+
+            <?php endforeach; ?>
         </tbody>
     </table>
 
@@ -101,7 +105,9 @@
         </div>
     </div>
 
-
+    <script>
+        window.print()
+    </script>
 </body>
 
 </html>

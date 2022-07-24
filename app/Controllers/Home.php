@@ -23,7 +23,13 @@ class Home extends BaseController
     {
         $allpatient = $this->patient->allpatient();
         $allcheckup = $this->checkup->cekCovid();
-        $cekdaily = $this->checkup->dailycek('2022-07');
+        $now = (new Time('now', 'Asia/Jakarta', 'id_ID'));
+        $tahun = $this->request->getGet('tahun') ?? $now->format('Y');
+        $bulan = $this->request->getGet('bulan') ?? $now->format('m');
+        $date = $tahun . '-' . $bulan;
+
+        $cekdaily = $this->checkup->dailycek($date);
+        // dd($tahun . '-' . $bulan);
         $i = 0;
         foreach ($cekdaily->getResultArray() as $row) {
             $nilai[$i] = $row['jumlah'];
@@ -32,6 +38,8 @@ class Home extends BaseController
         $data = [
             'content' => 'pages/dashboard',
             'Judul' => 'Dashboard',
+            'tahun' => $tahun,
+            'bulan' => $bulan,
             'totalpatient' => $allpatient->countAllResults(true),
             'negatifcovid' => $allcheckup->where('result', 'Negatif')->countAllResults(true),
             'positifcovid' => $allcheckup->where('result', 'Positif')->countAllResults(true),
@@ -39,7 +47,7 @@ class Home extends BaseController
             'tesantigen' => $allcheckup->where('checkup', 'Covid Antigen - Rapid')->countAllResults(true),
             'tesantibody' => $allcheckup->where('checkup', 'Covid Antibody - Rapid')->countAllResults(true),
             'tespcr' => $allcheckup->where('checkup', 'Covid PCR-Swab')->countAllResults(true),
-            'dailypasien' => $nilai,
+            'dailypasien' => $nilai ?? [],
         ];
         return view('tamplate/layout', $data);
     }

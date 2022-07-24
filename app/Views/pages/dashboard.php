@@ -97,6 +97,30 @@
         <div class="row">
             <!-- Left col -->
             <section class="col-lg-12">
+                <div class="row-md-4">
+                    <form action="" method="get">
+                        <select name="bulan" id="">
+                            <option value="01" <?= $bulan == "01" ? "selected" : "" ?>>Januari</option>
+                            <option value="02" <?= $bulan == "02" ? "selected" : "" ?>>Februari</option>
+                            <option value="03" <?= $bulan == "03" ? "selected" : "" ?>>Maret</option>
+                            <option value="04" <?= $bulan == "04" ? "selected" : "" ?>>April</option>
+                            <option value="05" <?= $bulan == "05" ? "selected" : "" ?>>Mei</option>
+                            <option value="06" <?= $bulan == "06" ? "selected" : "" ?>>Juni</option>
+                            <option value="07" <?= $bulan == "07" ? "selected" : "" ?>>Juli</option>
+                            <option value="08" <?= $bulan == "08" ? "selected" : "" ?>>Agustus</option>
+                            <option value="09" <?= $bulan == "09" ? "selected" : "" ?>>September</option>
+                            <option value="10" <?= $bulan == "10" ? "selected" : "" ?>>Oktober</option>
+                            <option value="11" <?= $bulan == "11" ? "selected" : "" ?>>November</option>
+                            <option value="12" <?= $bulan == "12" ? "selected" : "" ?>>Desember</option>
+                        </select>
+                        <select name="tahun" id="">
+                            <option value="2021" <?= $tahun == "2021" ? "selected" : "" ?>>2021</option>
+                            <option value="2022" <?= $tahun == "2022" ? "selected" : "" ?>>2022</option>
+                        </select>
+
+                        <button type="submit" name="btn-go">Go</button>
+                    </form>
+                </div>
                 <!-- BAR CHART -->
                 <div class="card card-success">
 

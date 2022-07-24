@@ -18,7 +18,7 @@ class CheckupModel extends Model
 
     public function cekCovid()
     {
-        $this->today = new Time('now', 'Asia/Jakarta', 'id_ID');
+        $this->today = (new Time('now', 'Asia/Jakarta', 'id_ID'))->format('dd-mm-yyyy');
         $builder = $this->db->table('covid_checkup as a')
             ->select('*');
         return $builder;
@@ -65,5 +65,12 @@ class CheckupModel extends Model
         $this->db = db_connect();
         $this->builder = $this->db->table("covid_checkup as a");
         return $this->builder->update($data, ['a.id' => $id]);
+    }
+
+    public function cekLaporan($id)
+    {
+        $sql = $this->db->query("SELECT * FROM covid_checkup JOIN patients on covid_checkup.nik = patients.nik WHERE covid_checkup.id = $id");
+
+        return $sql->getResultArray();
     }
 }

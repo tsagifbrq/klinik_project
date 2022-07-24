@@ -23,7 +23,7 @@ class Hasil extends BaseController
     {
         $detail =  $this->checkup->cekLaporan($id);
         $dataLaporan = [
-            'cid' => $detail,
+            'laporan' => $detail,
         ];
 
         return view('pages/hasil', $dataLaporan);
