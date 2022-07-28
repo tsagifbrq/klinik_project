@@ -15,7 +15,7 @@
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <a class="btn btn-success" target="_blank" href="daftar"><i class="fa fa-add"></i></a>
+                        <a class="btn btn-secondary" target="_blank" href="daftar"><i class="fa fa-add"></i></a>
                         <br>
                         <hr>
                         <?php echo session()->getFlashdata('msg') ?>
@@ -51,14 +51,16 @@
                                             </a>
                                         </td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalUbah-<?= $p['id'] ?>" id="edit" class="btn btn-warning" data-id="<?= $p['id']; ?>">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <form action="hapus/<?= $p['id']; ?>" method="POST">
-                                                <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-xs btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?');"><i class="fas btn-xs fa-trash-alt"></i></button>
-                                            </form>
+                                            <div class="row">
+                                                <button type="button" data-toggle="modal" data-target="#modalUbah-<?= $p['id'] ?>" id="edit" class="btn btn-warning" data-id="<?= $p['id']; ?>">
+                                                    <i class="fa fa-edit"></i>
+                                                </button>
+                                                <form action="hapus/<?= $p['id']; ?>" method="POST" class="ml-1">
+                                                    <?= csrf_field(); ?>
+                                                    <input type="hidden" name="_method" value="DELETE">
+                                                    <button type="submit" class="btn btn-s btn-danger" onclick="return confirm('Apakah anda yakin ingin menghapus?');"><i class="fas btn-xs fa-trash-alt"></i></button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                     <form action="/pasient-today/update/" method="post">

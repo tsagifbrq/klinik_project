@@ -46,7 +46,7 @@ class Home extends BaseController
             'pasientoday' => $allcheckup->like('created_at', date('Y-m-d'))->countAllResults(true),
             'tesantigen' => $allcheckup->where('checkup', 'Covid Antigen - Rapid')->countAllResults(true),
             'tesantibody' => $allcheckup->where('checkup', 'Covid Antibody - Rapid')->countAllResults(true),
-            'tespcr' => $allcheckup->where('checkup', 'Covid PCR-Swab')->countAllResults(true),
+            'tespcr' => $allcheckup->where('checkup', 'Covid PCR - Swap')->countAllResults(true),
             'dailypasien' => $nilai ?? [],
         ];
         return view('tamplate/layout', $data);

@@ -58,8 +58,8 @@ class Daftar extends BaseController
                 $exam1 = 'Covid Antibody - Rapid';
                 $exam2 = 'Antibody Rapid Test';
             } else {
-                $exam1 = 'Covid PCR - Swab';
-                $exam2 = 'AntiGen PCR Swab';
+                $exam1 = 'Covid PCR - Swap';
+                $exam2 = 'AntiGen PCR Swap';
             }
             $data2 = [
                 'nik' => $this->request->getVar('nik'),

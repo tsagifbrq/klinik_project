@@ -62,7 +62,7 @@
                                                 <td><?= $row['result']; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
-                                        <?php echo "Jumlah Pasien Pada Bulan " . $bulanAwal . ' S/D ' . $bulanAkhir . ' = ' . count($filterBulan) ?>
+                                        <?php echo "Jumlah Pasien  = " . count($filterBulan) ?>
                                     </tbody>
 
                                 </table>

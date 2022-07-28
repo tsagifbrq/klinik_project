@@ -62,7 +62,7 @@
                                                 <td><?= $row['result']; ?></td>
                                             </tr>
                                         <?php endforeach; ?>
-                                        <?php echo "Jumlah Pasien Pada Tahun " . $tahun . ' = ' . count($filterTahun) ?>
+                                        <?php echo "Jumlah Pasien  = " . count($filterTahun) ?>
                                     </tbody>
 
 
